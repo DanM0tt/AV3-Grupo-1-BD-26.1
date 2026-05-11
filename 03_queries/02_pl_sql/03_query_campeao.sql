@@ -35,9 +35,7 @@ BEGIN
                 ELSE 'Apertado'
             END;
 
-            v_resultado := r_part.nome_time
-                 ' - '  r_part.pontos  ' pts'
-                 ' ('  v_desempenho  ')';
+            v_resultado := r_part.nome_time || ' - ' || r_part.pontos || ' pts (' || v_desempenho || ')';
         END IF;
 
         FETCH c_classificacao INTO r_part;
