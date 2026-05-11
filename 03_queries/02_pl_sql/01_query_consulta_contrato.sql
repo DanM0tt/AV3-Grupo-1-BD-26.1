@@ -1,5 +1,7 @@
 -- Verifica a situação de um contrato pelo CPF do jogador
 
+SET SERVEROUTPUT ON;
+/
 DECLARE
     v_nome_time     Time.nome%TYPE;
     v_salario       Contrato.salario_mensal%TYPE;
@@ -23,15 +25,15 @@ BEGIN
         v_situacao := 'Contrato proximo do fim';
     END IF;
 
-    DBMS_OUTPUT.PUT_LINE('Time: '      v_nome_time);
-    DBMS_OUTPUT.PUT_LINE('Salario: '   v_salario);
+    DBMS_OUTPUT.PUT_LINE('Time: ' || v_nome_time);
+    DBMS_OUTPUT.PUT_LINE('Salario: ' || v_salario);
     DBMS_OUTPUT.PUT_LINE('Situacao: ' || v_situacao);
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Nenhum contrato vigente encontrado para o CPF informado.');
-    WHEN TOO_MANY_ROWS THEN
-        DBMS_OUTPUT.PUT_LINE('Multiplos contratos vigentes encontrados.');
+        DBMS_OUTPUT.PUT_LINE('Nenhum contrato vigente encontrado.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Erro inesperado: ' || SQLERRM);
 END;
 /
 
