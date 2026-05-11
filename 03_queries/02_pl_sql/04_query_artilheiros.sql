@@ -1,5 +1,7 @@
 -- Bloco anônimo: lista os 3 maiores artilheiros do Brasileirão 2024
 
+SET SERVEROUTPUT ON;
+
 DECLARE
     TYPE t_artilheiro IS RECORD (
         cpf     Jogador.CPF%TYPE,
@@ -33,12 +35,10 @@ BEGIN
     CLOSE c_gols;
 
     FOR i IN 1 .. v_artilheiros.COUNT LOOP
-        DBMS_OUTPUT.PUT_LINE(
-            i  'o lugar: CPF '  v_artilheiros(i).cpf
-               ' - '  v_artilheiros(i).gols || ' gols'
-        );
+        
+        DBMS_OUTPUT.PUT_LINE(i || 'o lugar: CPF ' || v_artilheiros(i).cpf || ' - ' || v_artilheiros(i).gols || ' gols');
     END LOOP;
 END;
-/
+
 
 -- Comandos utilizados: TABLE TYPE, LOOP EXIT WHEN
